@@ -1,14 +1,7 @@
-lib-cov
-*.seed
-*.log
-*.csv
-*.dat
-*.out
-*.pid
-*.gz
 
-pids
-logs
-results
+# Windows
+Thumbs.db
+Desktop.ini
 
-npm-debug.log
+# Mac
+.DS_Store
