@@ -6,7 +6,8 @@ var y = 50;
 function Game() {
     var self = this;
 
-    self.FPS_target = 30;
+    self.FPS_target = 1;
+    self.minimum_FPS = 10;
     
     self.CANVAS_WIDTH = 640;
     self.CANVAS_HEIGHT = 512;
@@ -16,6 +17,7 @@ function Game() {
 
 
     self.target_frame_interval = 1000/self.FPS_target;
+    self.maximum_deltaT = 1000/self.minimum_FPS;
     
 
     self.update = function(deltaT) {
@@ -45,7 +47,7 @@ function Game() {
 
     self.game_loop_step = function()
     {
-        var deltaT = Date.now() - self.last_update_time;
+        var deltaT = Math.min(Date.now() - self.last_update_time, self.maximum_deltaT);
         self.last_update_time = Date.now();
         
         var frame_start_time = Date.now();
