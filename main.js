@@ -1,12 +1,29 @@
-
-var x = 50;
-var y = 50;
-
-
-function Game() {
+function Player() 
+{    
     var self = this;
 
-    self.FPS_target = 1;
+    self.color = "#00A";
+    self.x = 220;
+    self.y = 270;
+    self.width = 32;
+    self.height = 32;
+
+    self.draw = function(canvas) {
+        canvas.fillStyle = self.color;
+        canvas.fillRect(self.x, self.y, self.width, self.height);
+    }
+
+    self.update = function(deltaT) {
+
+    }
+}
+
+player = new Player();
+
+function Game() 
+{    var self = this;
+
+    self.FPS_target = 60;
     self.minimum_FPS = 10;
     
     self.CANVAS_WIDTH = 640;
@@ -21,17 +38,14 @@ function Game() {
     
 
     self.update = function(deltaT) {
-        //x = x + 1 * deltaT;
-        //y = y + 1 * deltaT;
-        console.log(deltaT);
-        x = x + 80 * deltaT;
+        player.x = player.x + 80 * deltaT;
     }
 
     self.draw = function() {
         ctx = self.canvas;
         ctx.clearRect(0, 0, self.CANVAS_WIDTH, self.CANVAS_HEIGHT);
-        ctx.fillStyle = "#000";
-        ctx.fillRect(x, y, 50, 50);
+
+        player.draw(self.canvas);
     }
 
     self.init = function() 
