@@ -1,14 +1,53 @@
-//get a reference to the canvas
-var canvas_context = $('#gameCanvas')[0].getContext("2d");
 
-//draw a circle
-canvas_context.beginPath();
-canvas_context.arc(75, 75, 10, 0, Math.PI*2, true); 
-canvas_context.closePath();
-canvas_context.fill();
+// PArameters
+var FPS_target = 30;
+var CANVAS_WIDTH = 640;
+var CANVAS_HEIGHT = 512;
+
+// Components
+var canvas;
+
+// State
+var textX = 50;
+var textY = 50;
+
+function init() {
+  var canvasElement = $('<canvas width="' + CANVAS_WIDTH + '" height="' + CANVAS_HEIGHT + '"></canvas>');
+  canvas = canvasElement.get(0).getContext("2d");
+
+  canvasElement.appendTo('#canvasDiv');
+}
+
+init();
+setInterval(function() {
+  update();
+  draw();
+}, 1000/FPS_target);
 
 
-canvas_context.beginPath();
-canvas_context.rect(200, 300, 30, 50);
-canvas_context.closePath();
-canvas_context.stroke();
+function draw() {
+  canvas.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+  player.draw();
+}
+
+
+
+function update() {
+  textX += 1;
+  textY += 1;
+}
+
+
+
+var player = {
+  color: "#00A",
+  x: 220,
+  y: 270,
+  width: 32,
+  height: 32,
+
+  draw: function() {
+    canvas.fillStyle = this.color;
+    canvas.fillRect(this.x, this.y, this.width, this.height);
+  }
+};
