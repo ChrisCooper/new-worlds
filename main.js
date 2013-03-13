@@ -18,8 +18,6 @@ function Player()
     }
 }
 
-player = new Player();
-
 function Game() 
 {    var self = this;
 
@@ -31,21 +29,21 @@ function Game()
 
     // Components
     self.canvas = null;
-
+    self.player = null;
 
     self.target_frame_interval = 1000/self.FPS_target;
     self.maximum_deltaT = 1000/self.minimum_FPS;
     
 
     self.update = function(deltaT) {
-        player.x = player.x + 80 * deltaT;
+        self.player.x += 80 * deltaT;
     }
 
     self.draw = function() {
         ctx = self.canvas;
         ctx.clearRect(0, 0, self.CANVAS_WIDTH, self.CANVAS_HEIGHT);
 
-        player.draw(self.canvas);
+        self.player.draw(self.canvas);
     }
 
     self.init = function() 
@@ -54,6 +52,8 @@ function Game()
         self.canvas = canvasElement.get(0).getContext("2d");
         
         canvasElement.appendTo('#canvasDiv');
+
+        self.player = new Player();
     };
 
 
