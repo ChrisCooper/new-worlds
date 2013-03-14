@@ -18,6 +18,15 @@ function Player()
     }
 }
 
+function addStats(game)
+{
+    var stats = new Stats();
+    stats.setMode(0); // 0: fps, 1: ms
+
+    $("#statsDiv").append(stats.domElement);
+    game.stats = stats;
+}
+
 function Game() 
 {    var self = this;
 
@@ -54,6 +63,8 @@ function Game()
         canvasElement.appendTo('#canvasDiv');
 
         self.player = new Player();
+
+        addStats(self);
     };
 
 
@@ -65,6 +76,8 @@ function Game()
         self.last_update_time = Date.now();
         
         var frame_start_time = Date.now();
+
+        self.stats.begin();
         
         ///////////////////////////////////
         self.update(deltaT/1000);
@@ -74,6 +87,8 @@ function Game()
         var frame_run_time = Date.now() - frame_start_time;
 
         var timeout_time = Math.max(self.target_frame_interval - frame_run_time, 0);
+
+        self.stats.end();
 
         setTimeout(self.game_loop_step, timeout_time);
     };
