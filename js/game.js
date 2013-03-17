@@ -152,5 +152,24 @@ function Game()
 }
 
 var game = new Game();
-game.init();
-game.run();
+
+
+$('#launchGameButton').click(function() {
+    console.log("Launching game");
+
+    $('#launchGameButton').remove();
+
+    $("#fullscreenDiv").get()[0].webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT); //Chrome
+    //$("#fullscreenDiv").get()[0].mozRequestFullScreen(); //Firefox
+
+    game.init();
+    game.run();
+});
+
+var draw_map = function() {
+ for (var y = 0; y < mapWidth; y++) {
+    for (var y = 0; y < mapWidth; y++) {
+        //draw_sprite(screenBuffer, aMapSquare[x][y].picture, placeOnGridX(x, y), placeOnGridY(x, y) - anObject[aMapSquare[x][y].objectType].printOffset);
+    }
+ }
+}

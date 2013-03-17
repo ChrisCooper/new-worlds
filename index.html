@@ -8,7 +8,8 @@
     <meta name="author" content="Chris Cooper">
 
     <!-- Le styles -->
-    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/lib/bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/game.css" rel="stylesheet">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -25,26 +26,14 @@
 
   <body>
 
-    <div class="container-fluid">
-      <div class="row-fluid">
-          <div class="span2">
-            <!--Sidebar content-->
-          </div>
-          <div class="span10">
-            <div id="canvasDiv">
-            </div>
-            <div id="statsDiv">
-            </div>
-          </div>
-        </div>
-
-      <hr>
-
-      <div class="footer">
-        <p>&copy; Chris Cooper 2013</p>
+    <div id="fullscreenDiv" class="fullscreen content">
+      <a id="launchGameButton" href="#" class="btn btn-primary">Launch the Game</a>
+      <div id="canvasDiv">
       </div>
+      <div id="statsDiv">
+      </div>
+    </div>
 
-    </div> <!-- /container -->
 
     <!-- Le javascript
     ================================================== -->
