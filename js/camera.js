@@ -6,7 +6,7 @@ camera = new function() {
     self.y = 300.0;
 
     self.update = function(deltaT) {
-        self.x += 120.0 * deltaT;
+        self.x += 60.0 * deltaT;
         self.y += 4.0 * deltaT;
     };
     

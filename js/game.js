@@ -33,6 +33,8 @@ game = new function ()
         self.canvas = canvasElement.get(0).getContext("2d");
         
         canvasElement.appendTo('#canvasDiv');
+
+        logic.init();        
     };
 
 

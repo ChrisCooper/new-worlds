@@ -2,8 +2,8 @@ config = new function() {
 
     var self = this;
 
-    self.mapWidth = 50;
-    self.mapHeight = 50,
+    self.mapWidth = 150;
+    self.mapHeight = 150,
 
     self.squareWidth = 56;
 }();

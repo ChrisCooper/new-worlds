@@ -4,15 +4,15 @@ visuals = new function() {
 
     /* Publics */
     self.draw_map = function (canvas) {
-        for (var y = 0; y < config.mapWidth; y++) {
-            for (var x = 0; x < config.mapHeight; x++) {
-                canvas.drawImage(tile, self.placeOnGridX(x, y), self.placeOnGridY(x, y) - tile.printOffset);
-            }
-        }
+        map.draw(canvas);
     };
 
+}();
 
-    /* Privates */
+
+transforms = new function() {
+
+    var self = this;
 
     /*Converts a grid coordinate to pixels*/
     self.placeOnGridX = function(x, y) {
@@ -23,15 +23,4 @@ visuals = new function() {
     self.placeOnGridY = function(x, y) {
         return Math.floor(0.25 * config.squareWidth * (x + y) - camera.y);
     }
-
-
-    var tile = new Image();
-
-    tile.src = 'tile.png';
-    tile.printOffset = 0;
-
-
 }();
-
-
-
