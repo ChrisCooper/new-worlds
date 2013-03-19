@@ -159,7 +159,7 @@ $('#launchGameButton').click(function() {
 
     $('#launchGameButton').remove();
 
-    $("#fullscreenDiv").get()[0].webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT); //Chrome
+    $("#fullscreenDiv").get()[0].webkitRequestFullScreen(); //Chrome
     //$("#fullscreenDiv").get()[0].mozRequestFullScreen(); //Firefox
 
     game.init();
@@ -167,9 +167,19 @@ $('#launchGameButton').click(function() {
 });
 
 var draw_map = function() {
- for (var y = 0; y < mapWidth; y++) {
     for (var y = 0; y < mapWidth; y++) {
-        //draw_sprite(screenBuffer, aMapSquare[x][y].picture, placeOnGridX(x, y), placeOnGridY(x, y) - anObject[aMapSquare[x][y].objectType].printOffset);
+        for (var y = 0; y < mapWidth; y++) {
+            //draw_sprite(screenBuffer, aMapSquare[x][y].picture, placeOnGridX(x, y), placeOnGridY(x, y) - anObject[aMapSquare[x][y].objectType].printOffset);
+        }
     }
- }
+}
+
+/*Converts a grid coordinate to pixels*/
+var placeOnGridX = function(x, y) {
+    return Math.floor(0.5*squareWidth*(x-y) + cameraX);
+}
+
+/*Converts a grid coordinate to pixels*/
+var placeOnGridY = function(x, y) {
+    return (int)(0.25*squareWidth*(x+y) + cameraY);
 }
