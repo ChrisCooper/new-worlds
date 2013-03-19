@@ -102,6 +102,7 @@ function Game()
         ctx.clearRect(0, 0, self.CANVAS_WIDTH, self.CANVAS_HEIGHT);
 
         self.players.map(function(p) {p.draw(self.canvas);});
+        draw_map();
     }
 
     self.init = function() 
@@ -159,17 +160,31 @@ $('#launchGameButton').click(function() {
 
     $('#launchGameButton').remove();
 
-    $("#fullscreenDiv").get()[0].webkitRequestFullScreen(); //Chrome
+    //$("#fullscreenDiv").get()[0].webkitRequestFullScreen(); //Chrome
     //$("#fullscreenDiv").get()[0].mozRequestFullScreen(); //Firefox
 
     game.init();
     game.run();
 });
 
+/* VISUALS */
+
+var cameraX = 0;
+var cameraY = 0;
+
+var squareWidth = 56;
+var mapWidth = 10;
+var mapHeight = 10;
+
+var tile = new Image();
+
+tile.src = 'tile.png';
+
 var draw_map = function() {
     for (var y = 0; y < mapWidth; y++) {
-        for (var y = 0; y < mapWidth; y++) {
-            //draw_sprite(screenBuffer, aMapSquare[x][y].picture, placeOnGridX(x, y), placeOnGridY(x, y) - anObject[aMapSquare[x][y].objectType].printOffset);
+        for (var x = 0; x < mapHeight; x++) {
+            //draw_sprite(screenBuffer, aMapSquare[x][y].picture, ,  - anObject[aMapSquare[x][y].objectType].printOffset);
+            ctx.drawImage(tile, placeOnGridX(x, y), placeOnGridY(x, y));
         }
     }
 }
@@ -181,5 +196,5 @@ var placeOnGridX = function(x, y) {
 
 /*Converts a grid coordinate to pixels*/
 var placeOnGridY = function(x, y) {
-    return (int)(0.25*squareWidth*(x+y) + cameraY);
+    return Math.floor(0.25*squareWidth*(x+y) + cameraY);
 }
