@@ -1,14 +1,6 @@
 
-function addStats(game)
-{
-    var stats = new Stats();
-    stats.setMode(0); // 0: fps, 1: ms
 
-    $("#statsDiv").append(stats.domElement);
-    game.stats = stats;
-}
-
-function Game() 
+game = new function () 
 {    
     var self = this;
 
@@ -20,20 +12,19 @@ function Game()
 
 
     // Components
-    self.canvas = null;
 
     self.target_frame_interval = 1000/self.FPS_target;
     self.maximum_deltaT = 1000/self.minimum_FPS;
     
 
     self.update = function(deltaT) {
+        logic.update_game(deltaT);
     }
 
     self.draw = function() {
-        ctx = self.canvas;
-        ctx.clearRect(0, 0, self.CANVAS_WIDTH, self.CANVAS_HEIGHT);
+        self.canvas.clearRect(0, 0, self.CANVAS_WIDTH, self.CANVAS_HEIGHT);
 
-        draw_map();
+        visuals.draw_map(self.canvas);
     }
 
     self.init = function() 
@@ -42,8 +33,6 @@ function Game()
         self.canvas = canvasElement.get(0).getContext("2d");
         
         canvasElement.appendTo('#canvasDiv');
-
-        addStats(self);
     };
 
 
@@ -76,9 +65,7 @@ function Game()
         self.draw();
         self.game_loop_step();
     }
-}
-
-var game = new Game();
+}();
 
 
 $('#launchGameButton').click(function() {
@@ -90,37 +77,6 @@ $('#launchGameButton').click(function() {
     //$("#fullscreenDiv").get()[0].mozRequestFullScreen(); //Firefox
 
     game.init();
+    gui.addStats(game);
     game.run();
 });
-
-/* VISUALS */
-
-var cameraX = 0;
-var cameraY = 0;
-
-var squareWidth = 56;
-var mapWidth = 10;
-var mapHeight = 10;
-
-var tile = new Image();
-
-tile.src = 'tile.png';
-
-var draw_map = function() {
-    for (var y = 0; y < mapWidth; y++) {
-        for (var x = 0; x < mapHeight; x++) {
-            //draw_sprite(screenBuffer, aMapSquare[x][y].picture, ,  - anObject[aMapSquare[x][y].objectType].printOffset);
-            ctx.drawImage(tile, placeOnGridX(x, y), placeOnGridY(x, y));
-        }
-    }
-}
-
-/*Converts a grid coordinate to pixels*/
-var placeOnGridX = function(x, y) {
-    return Math.floor(0.5*squareWidth*(x-y) + cameraX);
-}
-
-/*Converts a grid coordinate to pixels*/
-var placeOnGridY = function(x, y) {
-    return Math.floor(0.25*squareWidth*(x+y) + cameraY);
-}
