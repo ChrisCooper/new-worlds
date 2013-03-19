@@ -28,9 +28,7 @@ map = new function() {
                 var tile = self.tiles[y][x];
                 var drawX = transforms.placeOnGridX(x, y);
                 var drawY = transforms.placeOnGridY(x, y) - tile.printOffset;
-                if (drawX >= -config.squareWidth && drawX < game.CANVAS_WIDTH && drawY >= -100 && drawY < game.CANVAS_HEIGHT){
-                    canvas.drawImage(tile.image, drawX, drawY);
-                }
+                visuals.clipped_draw(canvas, tile.image, drawX, drawY);
             }
         }
     };
@@ -47,7 +45,7 @@ map = new function() {
 var Tile = function() {
     var self = this;
 
-    var num_images = 21;
+    var num_images = 16;
     var random_index = Math.floor(Math.random() * (num_images - 1)) + 1;
 
     self.image = new Image();

@@ -7,6 +7,13 @@ visuals = new function() {
         map.draw(canvas);
     };
 
+    //Draws an image if it actaully appears on the canvas
+    self.clipped_draw = function(canvas, image, pixelX, pixelY) {
+        if (pixelX >= -image.width && pixelX < game.CANVAS_WIDTH && pixelY >= -image.height && pixelY < game.CANVAS_HEIGHT){
+            canvas.drawImage(image, pixelX, pixelY);
+        }
+    };
+
 }();
 
 
