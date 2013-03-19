@@ -16,12 +16,12 @@ visuals = new function() {
 
     /*Converts a grid coordinate to pixels*/
     self.placeOnGridX = function(x, y) {
-        return Math.floor(0.5 * config.squareWidth * (x - y) + camera.x);
+        return Math.floor(0.5 * config.squareWidth * (x - y) - camera.x);
     };
 
     /*Converts a grid coordinate to pixels*/
     self.placeOnGridY = function(x, y) {
-        return Math.floor(0.25 * config.squareWidth * (x + y) + camera.y);
+        return Math.floor(0.25 * config.squareWidth * (x + y) - camera.y);
     }
 
 

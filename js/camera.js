@@ -2,11 +2,12 @@ camera = new function() {
 
     var self = this;
 
-    self.x = 0.0;
-    self.y = 0.0;
+    self.x = -1700.0;
+    self.y = 300.0;
 
     self.update = function(deltaT) {
-
+        self.x += 120.0 * deltaT;
+        self.y += 4.0 * deltaT;
     };
     
 }();
