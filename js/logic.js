@@ -9,5 +9,4 @@ logic = new function() {
     self.update_game = function(deltaT) {
         camera.update(deltaT);
     };
-    
 }();

@@ -1,12 +1,12 @@
 
 
-game = new function () 
-{    
+game = new function ()
+{
     var self = this;
 
     self.FPS_target = 60;
     self.minimum_FPS = 10;
-    
+
     self.CANVAS_WIDTH = 1024;
     self.CANVAS_HEIGHT = 640;
 
@@ -19,13 +19,13 @@ game = new function ()
 
     self.update = function(deltaT) {
         logic.update_game(deltaT);
-    }
+    };
 
     self.draw = function() {
         self.canvas.clearRect(0, 0, self.CANVAS_WIDTH, self.CANVAS_HEIGHT);
 
         visuals.draw_map(self.canvas);
-    }
+    };
 
     self.init = function() 
     {
@@ -34,7 +34,7 @@ game = new function ()
         
         canvasElement.appendTo('#canvasDiv');
 
-        logic.init();        
+        logic.init();
     };
 
 
@@ -66,7 +66,7 @@ game = new function ()
     self.run = function() {
         self.draw();
         self.game_loop_step();
-    }
+    };
 }();
 
 

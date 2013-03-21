@@ -52,4 +52,4 @@ var Tile = function() {
     self.image.src = "img/tile" + random_index + ".gif";
 
     self.printOffset = 0;
-}
+};
